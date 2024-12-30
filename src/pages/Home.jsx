@@ -1,88 +1,52 @@
-import { useState, useEffect } from 'react'
-import axios from 'axios'
-import Search from '../components/Search'
-import ProductCard from '../components/ProuductCard'
-import GenreCard from '../components/GenreCard'
-import { useNavigate } from 'react-router-dom'
-const API_KEY = import.meta.env.VITE_RAWG_KEY
+import React, { useState } from 'react'
+import ProductCard from '../components/ProductCard'
+import fakeDatabase from '../db/Products' // Assuming this is where your products are stored
 
-const Home = () => {
-  let navigate = useNavigate()
-  const [genres, setGenres] = useState([])
-  const [searchResults, setSearchResults] = useState([])
-  const [searched, toggleSearched] = useState(false)
-  const [searchQuery, setSearchQuery] = useState('')
+const Home = ({ products = [] }) => {
+  const [searchQuery, setSearchQuery] = useState('') // State for search query
 
-  useEffect(() => {
-    const getGenres = async () => {
-      try {
-        const response = await axios.get(
-          `https://api.rawg.io/api/genres?key=${API_KEY}`
-          
-        )
-        setGenres(response.data.results)
-      } catch (error) {
-        console.error('Error fetching genres:', error)
-      }
-    }
-    getGenres()
-  }, [])
-
-  
-
-  const getSearchResults = async (e) => {
-    e.preventDefault()
-    try {
-      const response = await axios.get(
-        `https://api.rawg.io/api/games?key=${API_KEY}&search=${searchQuery}`
-      )
-      setSearchResults(response.data.results)
-      toggleSearched(true)
-      setSearchQuery('')
-    } catch (error) {
-      console.error('Error fetching search results:', error)
-    }
-  }
-
-  const handleChange = (event) => {
-    setSearchQuery(event.target.value)
-  }
+  // Filter products based on the search query
+  const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(searchQuery.toLowerCase())
+  )
 
   return (
-    <div>
-      <div className="search">
-        <Search
-          onSubmit={getSearchResults}
-          onChange={handleChange}
+    <div className="home-container">
+      <h2>Product List</h2>
+
+      {/* Search Bar */}
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Search products by name..."
           value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)} // Update search query
+          className="search-input"
         />
-        {searched && (
-          <section className="search-results container-grid">
-            {searchResults.map((game) => (
-              <ProductCard
-                key={game.id}
-                onClick={() => navigate(`/product/${game.id}`)}
-                image={game.background_image}
-                name={game.name}
-                rating={game.rating}
-              />
-            ))}
-          </section>
-        )}
+        {/* Clear Button */}
+        <button
+          onClick={() => setSearchQuery('')} // Clear search when clicked
+          className="clear-button"
+        >
+          Search
+        </button>
       </div>
-      <div className="genres">
-        <h2>Genres</h2>
-        <section className="container-grid">
-          {genres.map((genre) => (
-            <GenreCard
-              key={genre.id}
-              onClick={() => navigate(`/view/products/${genre.id}`)}
-              image={genre.image_background}
-              name={genre.name}
-              gamesCount={genre.games_count}
+
+      {/* Product List */}
+      <div className="product-list">
+        {filteredProducts.length > 0 ? (
+          filteredProducts.map((product, index) => (
+            <ProductCard
+              key={index}
+              name={product.name}
+              quantity={product.quantity}
+              unit={product.unit}
+              price={product.price}
             />
-          ))}
-        </section>
+          ))
+        ) : (
+          <p>No products found.</p>
+        )}
       </div>
     </div>
   )

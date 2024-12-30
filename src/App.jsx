@@ -7,6 +7,8 @@ import ProductDetails from './pages/ProductDetails'
 import ViewProduct from './pages/ViewProduct'
 import OrderDetails from './pages/OrderDetails'
 import Cart from './pages/Cart'
+import ProductCard from './components/ProductCard'
+import fakeDatabase from './db/Products'
 
 const App = () => {
   return (
@@ -14,8 +16,12 @@ const App = () => {
       <Header />
       <main>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home products={fakeDatabase} />} />
           <Route path="/about" element={<About />} />
+          <Route
+            path="/products"
+            element={<ProductCard products={fakeDatabase} />}
+          />
           <Route path="/product/:gameId" element={<ProductDetails />} />
           <Route path="/view/products/:genreId" element={<ViewProduct />} />
           <Route path="/order/:id" element={<OrderDetails />} />
