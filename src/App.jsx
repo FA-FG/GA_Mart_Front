@@ -9,8 +9,8 @@ import ProductDetails from './pages/ProductDetails'
 import ViewProduct from './pages/ViewProduct' 
 import OrderDetails from './pages/OrderDetails'
 import Cart from './pages/Cart'
-import Login from './components/Login'
-import AuthForm from './components/AuthForm';
+import LoginForm from './components/Login'
+import SignUpForm from './components/AuthForm';
 
 
 
@@ -22,8 +22,8 @@ const App = () => {
             <Header />
             <main>
               <Routes>
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<AuthForm />} />
+                <Route path="/login" element={<LoginForm />} />
+                <Route path="/register" element={<SignUpForm />} />
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/product/:gameId" element={<ProductDetails />} />
