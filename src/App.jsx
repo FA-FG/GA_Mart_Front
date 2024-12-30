@@ -34,7 +34,9 @@ const App = () => {
             </main>
 
     </div>
-  );
-};
 
-export default App;
+  )
+}
+
+export default App
+
