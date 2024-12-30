@@ -9,9 +9,12 @@ import ProductDetails from './pages/ProductDetails'
 import ViewProduct from './pages/ViewProduct' 
 import OrderDetails from './pages/OrderDetails'
 import Cart from './pages/Cart'
+
+import ProductCard from './components/ProductCard'
+import fakeDatabase from './db/Products'
+
 import LoginForm from './components/Login'
 import SignUpForm from './components/AuthForm';
-
 
 
 const App = () => {
@@ -19,12 +22,22 @@ const App = () => {
 
   return (
     <div>
+
+      <Header />
+      <main>
+        <Routes>
+          <Route path="/" element={<Home products={fakeDatabase} />} />
+          <Route path="/about" element={<About />} />
+          <Route
+            path="/products"
+            element={<ProductCard products={fakeDatabase} />}
+          />
             <Header />
             <main>
               <Routes>
                 <Route path="/login" element={<LoginForm />} />
                 <Route path="/register" element={<SignUpForm />} />
-                <Route path="/" element={<Home />} />
+   
                 <Route path="/about" element={<About />} />
                 <Route path="/product/:gameId" element={<ProductDetails />} />
                 <Route path="/view/products/:genreId" element={<ViewProduct />} />
@@ -32,6 +45,7 @@ const App = () => {
                 <Route path="/carts/:cartId" element={<Cart />} />
               </Routes>
             </main>
+
 
     </div>
 
