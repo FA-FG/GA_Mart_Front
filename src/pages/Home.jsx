@@ -61,7 +61,7 @@ const Home = () => {
             {searchResults.map((game) => (
               <ProductCard
                 key={game.id}
-                onClick={() => Navigate(`/product/details/${game.id}`)}
+                onClick={() => navigate(`/product/${game.id}`)}
                 image={game.background_image}
                 name={game.name}
                 rating={game.rating}
