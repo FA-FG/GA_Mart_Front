@@ -18,39 +18,25 @@ import SignUpForm from './components/AuthForm';
 
 
 const App = () => {
-  
-
   return (
-    <div>
-
+    <Router>
       <Header />
       <main>
         <Routes>
           <Route path="/" element={<Home products={fakeDatabase} />} />
           <Route path="/about" element={<About />} />
-          <Route
-            path="/products"
-            element={<ProductCard products={fakeDatabase} />}
-          />
-            <Header />
-            <main>
-              <Routes>
-                <Route path="/login" element={<LoginForm />} />
-                <Route path="/register" element={<SignUpForm />} />
-   
-                <Route path="/about" element={<About />} />
-                <Route path="/product/:gameId" element={<ProductDetails />} />
-                <Route path="/view/products/:genreId" element={<ViewProduct />} />
-                <Route path="/order/:id" element={<OrderDetails />} />
-                <Route path="/carts/:cartId" element={<Cart />} />
-              </Routes>
-            </main>
-
-
-    </div>
-
-  )
-}
+          <Route path="/products" element={<ProductCard products={fakeDatabase} />} />
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/register" element={<SignUpForm />} />
+          <Route path="/product/:gameId" element={<ProductDetails />} />
+          <Route path="/view/products/:genreId" element={<ViewProduct />} />
+          <Route path="/order/:id" element={<OrderDetails />} />
+          <Route path="/carts/:cartId" element={<Cart />} />
+        </Routes>
+      </main>
+    </Router>
+  );
+};
 
 export default App
 
