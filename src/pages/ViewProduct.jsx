@@ -6,27 +6,36 @@ const ViewProduct = () => {
   const navigate = useNavigate()
 
   const { genreId } = useParams()
+  console.log(`id:${genreId}`)
 
   const [games, setGames] = useState([])
+  
 
-  const getGamesByGenre = async () => {
+  const getGamesByGenre = async () => { 
     const API_KEY = import.meta.env.VITE_RAWG_KEY
+  
 
-    try {
+
       const response = await axios.get(
-        `https://api.rawg.io/api/games?page_size=40&genres=${genreId}&key=${API_KEY}`
+  
+        `https://api.rawg.io/api/games?genres=${genreId}&key=${API_KEY}&page_size=40`
+        
       )
+      const x = response.data.results
+      console.log(x)
       setGames(response.data.results)
-    } catch (error) {
-      console.error('Error fetching games by genre:', error)
-    }
+   
   }
 
   useEffect(() => {
+   
     if (genreId) {
       getGamesByGenre()
     }
   }, [genreId])
+
+  
+
 
   return (
     <div className="container-grid">

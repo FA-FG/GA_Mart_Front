@@ -18,6 +18,7 @@ const Home = () => {
       try {
         const response = await axios.get(
           `https://api.rawg.io/api/genres?key=${API_KEY}`
+          
         )
         setGenres(response.data.results)
       } catch (error) {
@@ -26,6 +27,8 @@ const Home = () => {
     }
     getGenres()
   }, [])
+
+  
 
   const getSearchResults = async (e) => {
     e.preventDefault()

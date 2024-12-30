@@ -16,8 +16,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/product/details/:id" element={<ProductDetails />} />
-          <Route path="/view/products/:id" element={<ViewProduct />} />
+          <Route path="/product/:gameId" element={<ProductDetails />} />
+          <Route path="/view/products/:genreId" element={<ViewProduct />} />
           <Route path="/order/:id" element={<OrderDetails />} />
           <Route path="/carts/:cartId" element={<Cart />} />
         </Routes>
@@ -25,5 +25,5 @@ const App = () => {
     </div>
   )
 }
-
+ 
 export default App
