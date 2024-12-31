@@ -28,8 +28,9 @@ const App = () => {
           />
           <Route path="/product/:gameId" element={<ProductDetails />} />
           <Route path="/view/products/:genreId" element={<ViewProduct />} />
-          <Route path="/order/:id" element={<OrderDetails />} />
-          <Route path="/carts/:cartId" element={<Cart />} />
+          <Route path="/order" element={<OrderDetails />} />
+          <Route path="/cart" element={<Cart />} />
+          
         </Routes>
       </main>
     </div>
