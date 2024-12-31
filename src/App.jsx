@@ -9,6 +9,8 @@ import OrderDetails from './pages/OrderDetails'
 import Cart from './pages/Cart'
 import ProductCard from './components/ProductCard'
 import fakeDatabase from './db/Products'
+import LoginForm from './components/Login'
+import SignUpForm from './components/AuthForm';
 
 const App = () => {
   return (
@@ -17,6 +19,8 @@ const App = () => {
       <main>
         <Routes>
           <Route path="/" element={<Home products={fakeDatabase} />} />
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/register" element={<SignUpForm />} />
           <Route path="/about" element={<About />} />
           <Route
             path="/products"
