@@ -11,9 +11,11 @@ const Header = () => {
           <Link to="/about" className="nav-link">
             About
           </Link>
+          <Link to="/login" className="nav-link">signIn</Link>
+        <Link to="/register" className="nav-link">register</Link>
         </nav>
       </div>
-    </header>
+    </header> 
   )
 }
 
