@@ -178,3 +178,35 @@ header {
     justify-content: space-around; /* Adjust for smaller screens */
   }
 }
+
+
+
+/* cart */
+
+.cart-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.cart-item button {
+  margin: 0 5px;
+}
+
+.cart-summary {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ccc;
+}
+
+.cart-summary button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.cart-summary button:hover {
+  background-color: #0056b3;
+}

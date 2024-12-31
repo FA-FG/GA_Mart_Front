@@ -7,6 +7,7 @@ import ProductDetails from './pages/ProductDetails'
 import ViewProduct from './pages/ViewProduct'
 import OrderDetails from './pages/OrderDetails'
 import Cart from './pages/Cart'
+import Order from './pages/Order'
 import ProductCard from './components/ProductCard'
 import fakeDatabase from './db/Products'
 import LoginForm from './components/Login'
@@ -15,6 +16,7 @@ import SignUpForm from './components/AuthForm';
 const App = () => {
   return (
     <div>
+  
       <Header />
       <main>
         <Routes>
@@ -29,7 +31,8 @@ const App = () => {
           <Route path="/product/:gameId" element={<ProductDetails />} />
           <Route path="/view/products/:genreId" element={<ViewProduct />} />
           <Route path="/order/:id" element={<OrderDetails />} />
-          <Route path="/carts/:cartId" element={<Cart />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/order" element={<Order />} />
         </Routes>
       </main>
     </div>
