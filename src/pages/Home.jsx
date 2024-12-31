@@ -42,6 +42,7 @@ const Home = ({ products = [] }) => {
               quantity={product.quantity}
               unit={product.unit}
               price={product.price}
+              image={product.image}
             />
           ))
         ) : (
