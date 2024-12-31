@@ -4,17 +4,15 @@ const fakeDatabase = [
     quantity: 10,
     unit: 'kg',
     price: 3.5,
-    image:
-      'https://www.luluhypermarket.com/cdn-cgi/image/f=auto/medias/19047-01.jpg-1200Wx1200H?context=bWFzdGVyfGltYWdlc3wyODA0NjR8aW1hZ2UvanBlZ3xhR1pqTDJnMll5OHhNRFV5TlRnME1UTTFPRGczT0M4eE9UQTBOeTB3TVM1cWNHZGZNVEl3TUZkNE1USXdNRWd8MTc3NjE3ZGVhYmY5Y2I0ODU5MTczNTNkZmFjYjdhMmE2YzYzOTczN2JiMjBiODViNTQ5MjA3MmU3YjI1NWE4YQ',
+    image:'https://www.luluhypermarket.com/cdn-cgi/image/f=auto/medias/19047-01.jpg-1200Wx1200H?context=bWFzdGVyfGltYWdlc3wyODA0NjR8aW1hZ2UvanBlZ3xhR1pqTDJnMll5OHhNRFV5TlRnME1UTTFPRGczT0M4eE9UQTBOeTB3TVM1cWNHZGZNVEl3TUZkNE1USXdNRWd8MTc3NjE3ZGVhYmY5Y2I0ODU5MTczNTNkZmFjYjdhMmE2YzYzOTczN2JiMjBiODViNTQ5MjA3MmU3YjI1NWE4YQ',
     description: 'Fresh, crispy apples, perfect for snacking or baking.'
   },
   {
-    name: 'Banana',
+    name: 'Banana', 
     quantity: 20,
     unit: 'kg',
     price: 1.2,
-    image:
-      'https://storage.kun.uz/source/thumbnails/_medium/9/D8EWICfyOkUgf1ccvwhYNXTi_n59FXof_medium.jpg',
+    image:'https://storage.kun.uz/source/thumbnails/_medium/9/D8EWICfyOkUgf1ccvwhYNXTi_n59FXof_medium.jpg',
     description: 'Sweet and nutritious bananas for a healthy snack.'
   },
   {
