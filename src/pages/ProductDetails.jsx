@@ -1,47 +1,50 @@
-import { useEffect, useState } from 'react'
+import React from 'react'
 import { useParams } from 'react-router-dom'
-import axios from 'axios'
 
-const ProductDetails = () => {
-  const { gameId } = useParams()
-  const [gameDetails, setGameDetails] = useState({})
+const ProductDetails = ({ products, addToCart }) => {
+  const { productId } = useParams()
+  const product = products.find((p) => p.id === parseInt(productId))
 
-  useEffect(() => {
-    const API_KEY = import.meta.env.VITE_RAWG_KEY
+  if (!product) {
+    return <p>Product not found</p>
+  }
 
-    const fetchGameDetails = async () => {
-      try {
-        const response = await axios.get(
-          `https://api.rawg.io/api/games/${gameId}?key=${API_KEY}`
-        )
-        setGameDetails(response.data)
-      } catch (error) {
-        console.error('Error fetching game details:', error)
-      }
-    }
-
-    fetchGameDetails()
-  }, [gameId])
+  const handleAddToCart = () => {
+    addToCart(product)
+  }
 
   return (
-    <div className="game-content">
-      <section className="image-container">
-        <div>
-          <img src={gameDetails.background_image} alt={gameDetails.name} />
+    <div className="product-details-container">
+      <div className="product-card">
+        <h2 className="product-title">Product Details</h2>
+
+        <div className="product-image-containerr">
+          <img
+            className="product-image-details"
+            src={product.image}
+            alt={`Image of ${product.name}`}
+          />
         </div>
-      </section>
-      <section className="details">
-        <div className="flex-row space">
-          <h2>{gameDetails.name}</h2>
-          <h2>Rating: {gameDetails.rating}/5</h2>
+
+        <div className="product-infoo">
+          <h3 className="product-namee">{product.name}</h3>
+          <p className="product-quantityy">
+            Quantity: {product.quantity} {product.unit}
+          </p>
+          <p className="product-pricee">Price: ${product.price}</p>
+          <p className="product-descriptionn">
+            Description: {product.description}
+          </p>
         </div>
-        <div>
-          <h3></h3>
-          <h3>Description</h3>
-          <p>{gameDetails.description_raw}</p>
+
+        <div className="product-action">
+          <button className="add-to-cart-buttonn" onClick={handleAddToCart}>
+            Add to Cart
+          </button>
         </div>
-      </section>
+      </div>
     </div>
   )
 }
+
 export default ProductDetails

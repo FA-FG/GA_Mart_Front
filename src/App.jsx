@@ -10,7 +10,7 @@ import Cart from './pages/Cart'
 import ProductCard from './components/ProductCard'
 import fakeDatabase from './db/Products'
 import LoginForm from './components/Login'
-import SignUpForm from './components/AuthForm';
+import SignUpForm from './components/AuthForm'
 
 const App = () => {
   return (
@@ -26,7 +26,10 @@ const App = () => {
             path="/products"
             element={<ProductCard products={fakeDatabase} />}
           />
-          <Route path="/product/:gameId" element={<ProductDetails />} />
+          <Route
+            path="/product/:productId"
+            element={<ProductDetails products={fakeDatabase} />}
+          />
           <Route path="/view/products/:genreId" element={<ViewProduct />} />
           <Route path="/order/:id" element={<OrderDetails />} />
           <Route path="/carts/:cartId" element={<Cart />} />

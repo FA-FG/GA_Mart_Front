@@ -1,21 +1,26 @@
 const fakeDatabase = [
   {
+    id: 1,
     name: 'Apple',
     quantity: 10,
     unit: 'kg',
     price: 3.5,
-    image:'https://www.luluhypermarket.com/cdn-cgi/image/f=auto/medias/19047-01.jpg-1200Wx1200H?context=bWFzdGVyfGltYWdlc3wyODA0NjR8aW1hZ2UvanBlZ3xhR1pqTDJnMll5OHhNRFV5TlRnME1UTTFPRGczT0M4eE9UQTBOeTB3TVM1cWNHZGZNVEl3TUZkNE1USXdNRWd8MTc3NjE3ZGVhYmY5Y2I0ODU5MTczNTNkZmFjYjdhMmE2YzYzOTczN2JiMjBiODViNTQ5MjA3MmU3YjI1NWE4YQ',
+    image:
+      'https://www.luluhypermarket.com/cdn-cgi/image/f=auto/medias/19047-01.jpg-1200Wx1200H?context=bWFzdGVyfGltYWdlc3wyODA0NjR8aW1hZ2UvanBlZ3xhR1pqTDJnMll5OHhNRFV5TlRnME1UTTFPRGczT0M4eE9UQTBOeTB3TVM1cWNHZGZNVEl3TUZkNE1USXdNRWd8MTc3NjE3ZGVhYmY5Y2I0ODU5MTczNTNkZmFjYjdhMmE2YzYzOTczN2JiMjBiODViNTQ5MjA3MmU3YjI1NWE4YQ',
     description: 'Fresh, crispy apples, perfect for snacking or baking.'
   },
   {
-    name: 'Banana', 
+    id: 2,
+    name: 'Banana',
     quantity: 20,
     unit: 'kg',
     price: 1.2,
-    image:'https://storage.kun.uz/source/thumbnails/_medium/9/D8EWICfyOkUgf1ccvwhYNXTi_n59FXof_medium.jpg',
+    image:
+      'https://storage.kun.uz/source/thumbnails/_medium/9/D8EWICfyOkUgf1ccvwhYNXTi_n59FXof_medium.jpg',
     description: 'Sweet and nutritious bananas for a healthy snack.'
   },
   {
+    id: 3,
     name: 'Carrot',
     quantity: 15,
     unit: 'kg',
@@ -25,6 +30,7 @@ const fakeDatabase = [
     description: 'Organic carrots full of vitamins and flavor.'
   },
   {
+    id: 4,
     name: 'Tomato',
     quantity: 25,
     unit: 'kg',
@@ -34,6 +40,7 @@ const fakeDatabase = [
     description: 'Juicy tomatoes, ideal for cooking and salads.'
   },
   {
+    id: 5,
     name: 'Potato',
     quantity: 30,
     unit: 'kg',
@@ -43,6 +50,7 @@ const fakeDatabase = [
     description: 'Delicious and versatile potatoes for any meal.'
   },
   {
+    id: 6,
     name: 'Onion',
     quantity: 40,
     unit: 'kg',
@@ -52,6 +60,7 @@ const fakeDatabase = [
     description: 'Fresh onions to enhance the flavor of your dishes.'
   },
   {
+    id: 7,
     name: 'Lemon',
     quantity: 50,
     unit: 'kg',
@@ -61,6 +70,7 @@ const fakeDatabase = [
     description: 'Tart and juicy lemons, perfect for drinks and desserts.'
   },
   {
+    id: 8,
     name: 'Grapes',
     quantity: 12,
     unit: 'kg',
@@ -70,6 +80,7 @@ const fakeDatabase = [
     description: 'Sweet grapes for a refreshing snack or juice.'
   },
   {
+    id: 9,
     name: 'Strawberry',
     quantity: 18,
     unit: 'kg',
@@ -79,6 +90,7 @@ const fakeDatabase = [
     description: 'Juicy, ripe strawberries perfect for smoothies and desserts.'
   },
   {
+    id: 10,
     name: 'Watermelon',
     quantity: 22,
     unit: 'kg',
@@ -88,6 +100,7 @@ const fakeDatabase = [
     description: 'Refreshing watermelon for hot summer days.'
   },
   {
+    id: 11,
     name: 'Spinach',
     quantity: 30,
     unit: 'kg',
@@ -97,6 +110,7 @@ const fakeDatabase = [
     description: 'Fresh spinach, rich in vitamins and minerals.'
   },
   {
+    id: 12,
     name: 'Peach',
     quantity: 12,
     unit: 'kg',
@@ -106,6 +120,7 @@ const fakeDatabase = [
     description: 'Sweet and juicy peaches, perfect for desserts.'
   },
   {
+    id: 13,
     name: 'Cucumber',
     quantity: 18,
     unit: 'kg',
@@ -115,6 +130,7 @@ const fakeDatabase = [
     description: 'Crisp cucumbers for refreshing salads and snacks.'
   },
   {
+    id: 14,
     name: 'Avocado',
     quantity: 8,
     unit: 'kg',
@@ -124,6 +140,7 @@ const fakeDatabase = [
     description: 'Creamy avocados perfect for toast, guacamole, or salads.'
   },
   {
+    id: 15,
     name: 'Pineapple',
     quantity: 15,
     unit: 'kg',
@@ -133,6 +150,7 @@ const fakeDatabase = [
     description: 'Sweet and tangy pineapples for a tropical treat.'
   },
   {
+    id: 16,
     name: 'Mango',
     quantity: 12,
     unit: 'kg',
@@ -142,6 +160,7 @@ const fakeDatabase = [
     description: 'Exotic and sweet mangoes, ideal for smoothies and desserts.'
   },
   {
+    id: 17,
     name: 'Blueberry',
     quantity: 20,
     unit: 'kg',
@@ -151,6 +170,7 @@ const fakeDatabase = [
     description: 'Fresh blueberries, rich in antioxidants and flavor.'
   },
   {
+    id: 18,
     name: 'Chili Pepper',
     quantity: 30,
     unit: 'kg',
@@ -160,6 +180,7 @@ const fakeDatabase = [
     description: 'Spicy chili peppers to add heat to your meals.'
   },
   {
+    id: 19,
     name: 'Cabbage',
     quantity: 18,
     unit: 'kg',
@@ -169,6 +190,7 @@ const fakeDatabase = [
     description: 'Fresh cabbage for salads and stir-fries.'
   },
   {
+    id: 20,
     name: 'Garlic',
     quantity: 22,
     unit: 'kg',
@@ -178,6 +200,7 @@ const fakeDatabase = [
     description: 'Flavorful garlic to add zest to any dish.'
   },
   {
+    id: 21,
     name: 'Zucchini',
     quantity: 20,
     unit: 'kg',
@@ -187,6 +210,7 @@ const fakeDatabase = [
     description: 'Tender zucchinis perfect for grilling or stir-frying.'
   },
   {
+    id: 22,
     name: 'Bell Pepper',
     quantity: 10,
     unit: 'kg',
@@ -197,6 +221,7 @@ const fakeDatabase = [
       'Vibrant bell peppers for adding color and taste to your meals.'
   },
   {
+    id: 23,
     name: 'Pumpkin',
     quantity: 12,
     unit: 'kg',
@@ -206,6 +231,7 @@ const fakeDatabase = [
     description: 'Sweet pumpkins for pies, soups, and roasts.'
   },
   {
+    id: 24,
     name: 'Lettuce',
     quantity: 25,
     unit: 'kg',
@@ -215,6 +241,7 @@ const fakeDatabase = [
     description: 'Fresh lettuce, ideal for salads and sandwiches.'
   },
   {
+    id: 25,
     name: 'Kale',
     quantity: 14,
     unit: 'kg',
@@ -224,6 +251,7 @@ const fakeDatabase = [
     description: 'Nutrient-rich kale for salads or sautéing.'
   },
   {
+    id: 26,
     name: 'Chard',
     quantity: 17,
     unit: 'kg',
@@ -233,6 +261,7 @@ const fakeDatabase = [
     description: 'Colorful Swiss chard, perfect for healthy cooking.'
   },
   {
+    id: 27,
     name: 'Broccoli',
     quantity: 25,
     unit: 'kg',
@@ -242,6 +271,7 @@ const fakeDatabase = [
     description: 'Fresh broccoli for healthy, nutritious meals.'
   },
   {
+    id: 28,
     name: 'Eggplant',
     quantity: 15,
     unit: 'kg',
@@ -251,6 +281,7 @@ const fakeDatabase = [
     description: 'Tender eggplants, ideal for grilling or stews.'
   },
   {
+    id: 29,
     name: 'Asparagus',
     quantity: 12,
     unit: 'kg',
@@ -260,6 +291,7 @@ const fakeDatabase = [
     description: 'Delicate asparagus for grilling, roasting, or sautéing.'
   },
   {
+    id: 30,
     name: 'Radish',
     quantity: 10,
     unit: 'kg',
@@ -269,6 +301,7 @@ const fakeDatabase = [
     description: 'Crisp, spicy radishes for salads or snacks.'
   },
   {
+    id: 31,
     name: 'Artichoke',
     quantity: 8,
     unit: 'kg',
