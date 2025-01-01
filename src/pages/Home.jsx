@@ -1,18 +1,17 @@
+// Home.js
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom' // Import Link for navigation
+import { Link } from 'react-router-dom' 
 import ProductCard from '../components/ProductCard'
-import ProductDetails from './ProductDetails'
 
-const Home = ({ products = [] }) => {
-  const [searchQuery, setSearchQuery] = useState('')
-  const [quantities, setQuantities] = useState({}) // State for quantities of each product
+const Home = ({ products = [], addToCart }) => {
+  const [searchQuery, setSearchQuery] = useState('') 
+  const [quantities, setQuantities] = useState({}) 
 
-  // Filter products based on the search query
+
   const filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(searchQuery.toLowerCase())
   )
 
-  // Function to update the quantity for a specific product
   const updateQuantity = (productName, quantity) => {
     setQuantities((prevQuantities) => ({
       ...prevQuantities,
@@ -30,24 +29,21 @@ const Home = ({ products = [] }) => {
           type="text"
           placeholder="Search products by name..."
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)} // Update search query
+          onChange={(e) => setSearchQuery(e.target.value)} 
           className="search-input"
         />
-        {/* Clear Button */}
         <button
-          onClick={() => setSearchQuery('')} // Clear search when clicked
+          onClick={() => setSearchQuery('')} 
           className="clear-button"
         >
           Clear
         </button>
       </div>
 
-      {/* Product List */}
       <div className="product-list">
         {filteredProducts.length > 0 ? (
           filteredProducts.map((product, index) => (
             <div key={index} className="product-item">
-              {/* Product Card with Link to Product Details */}
               <Link
                 to={`/product/${product.id}`}
                 className="product-image-link"
@@ -72,7 +68,9 @@ const Home = ({ products = [] }) => {
                 />
               </div>
               <button
-                onClick={() => addToCart(product)}
+                onClick={() =>
+                  addToCart(product, quantities[product.name] || 1)
+                } 
                 className="add-to-cart-button"
               >
                 Add to My Cart

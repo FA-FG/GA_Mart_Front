@@ -1,5 +1,5 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useState } from 'react'
+import { useParams, Link } from 'react-router-dom'
 
 const ProductDetails = ({ products, addToCart }) => {
   const { productId } = useParams()
@@ -9,8 +9,10 @@ const ProductDetails = ({ products, addToCart }) => {
     return <p>Product not found</p>
   }
 
+  // Function to handle Add to Cart
   const handleAddToCart = () => {
-    addToCart(product)
+    const validQuantity = 1 // Ensure valid quantity
+    addToCart({ ...product, quantity: validQuantity })
   }
 
   return (
@@ -18,7 +20,7 @@ const ProductDetails = ({ products, addToCart }) => {
       <div className="product-card">
         <h2 className="product-title">Product Details</h2>
 
-        <div className="product-image-containerr">
+        <div className="product-image-container">
           <img
             className="product-image-details"
             src={product.image}
@@ -26,22 +28,25 @@ const ProductDetails = ({ products, addToCart }) => {
           />
         </div>
 
-        <div className="product-infoo">
-          <h3 className="product-namee">{product.name}</h3>
-          <p className="product-quantityy">
+        <div className="product-info">
+          <h3 className="product-name">{product.name}</h3>
+          <p className="product-quantity">
             Quantity: {product.quantity} {product.unit}
           </p>
-          <p className="product-pricee">Price: ${product.price}</p>
-          <p className="product-descriptionn">
+          <p className="product-price">Price: ${product.price}</p>
+          <p className="product-description">
             Description: {product.description}
           </p>
         </div>
 
-        <div className="product-action">
-          <button className="add-to-cart-buttonn" onClick={handleAddToCart}>
-            Add to Cart
-          </button>
-        </div>
+        <button className="add-to-cart-button" onClick={handleAddToCart}>
+          Add to Cart
+        </button>
+
+        {/* Checkout Button */}
+        <Link to="/cart">
+          <button className="checkout-button">Go to Cart</button>
+        </Link>
       </div>
     </div>
   )

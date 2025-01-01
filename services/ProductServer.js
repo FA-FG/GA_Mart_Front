@@ -10,7 +10,15 @@ const createProduct = async (productData) => {
     throw error
   }
 }
-
+const getProducts = async () => {
+  try {
+    const response = await Client.get(`/products`) // Updated path
+    return response.data
+  } catch (error) {
+    console.error('Error getting product:', error)
+    throw error
+  }
+}
 // Get product by ID
 const getProduct = async (id) => {
   try {
@@ -48,5 +56,6 @@ export default {
   createProduct,
   getProduct,
   updateProduct,
-  deleteProduct
+  deleteProduct,
+  getProducts
 }
