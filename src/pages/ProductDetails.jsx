@@ -1,21 +1,31 @@
-import React, { useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import React, { useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
 
-const ProductDetails = ({ products, addToCart }) => {
-  const { productId } = useParams()
-  const product = products.find((p) => p.id === parseInt(productId))
+const ProductDetails = ({ products, addToCart, user }) => {
+  const { productId } = useParams();
+  const product = products.find((p) => p.id === parseInt(productId));
 
   if (!product) {
-    return <p>Product not found</p>
+    return (
+      <div className="error-message">
+        <p>Sorry, this product is not available.</p>
+        <Link to="/" className="back-to-home">Go back to Home</Link>
+      </div>
+    );
   }
+
+  const [quantity, setQuantity] = useState(1); // Track quantity for adding to cart
 
   // Function to handle Add to Cart
   const handleAddToCart = () => {
-    const validQuantity = 1 // Ensure valid quantity
-    addToCart({ ...product, quantity: validQuantity })
-  }
+    if (quantity < 1 || isNaN(quantity)) {
+      alert("Please select a valid quantity.");
+      return;
+    }
+    addToCart({ ...product, quantity: parseInt(quantity, 10) });
+  };
 
-  return (
+  return user ? (
     <div className="product-details-container">
       <div className="product-card">
         <h2 className="product-title">Product Details</h2>
@@ -25,31 +35,50 @@ const ProductDetails = ({ products, addToCart }) => {
             className="product-image-details"
             src={product.image}
             alt={`Image of ${product.name}`}
+            aria-describedby="product-description"
           />
         </div>
 
         <div className="product-info">
           <h3 className="product-name">{product.name}</h3>
           <p className="product-quantity">
-            Quantity: {product.quantity} {product.unit}
+            Available Quantity: {product.quantity} {product.unit}
           </p>
           <p className="product-price">Price: ${product.price}</p>
-          <p className="product-description">
+          <p id="product-description" className="product-description">
             Description: {product.description}
           </p>
         </div>
 
-        <button className="add-to-cart-button" onClick={handleAddToCart}>
+        <div className="quantity-selector">
+          <label htmlFor="quantity" className="quantity-label">Select Quantity: </label>
+          <input
+            id="quantity"
+            type="number"
+            min="1"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+            aria-label="Select product quantity"
+          />
+        </div>
+
+        <button
+          className="add-to-cart-button"
+          onClick={handleAddToCart}
+          aria-label={`Add ${product.name} to cart`}
+        >
           Add to Cart
         </button>
 
-        {/* Checkout Button */}
         <Link to="/cart">
           <button className="checkout-button">Go to Cart</button>
         </Link>
       </div>
     </div>
-  )
+  ):<div className="protected">
+  <h3>Oops! You must be signed in to do that!</h3>
+  <button onClick={() => navigate('/signin')}>Sign In</button>
+</div>
 }
 
-export default ProductDetails
+export default ProductDetails;
