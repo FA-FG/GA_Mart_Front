@@ -31,13 +31,15 @@ const SignUpForm = () => {
     } else if (formState.password !== formState.confirmPass) {
       setError('Passwords do not match!');
       setIsValid(false);
-    } else if (formState.password.length < 7) {
-      setError('Password must be at least 7 characters!');
-      setIsValid(false);
-    } else {
+    }
+    //  else if (formState.password.length < 7) {
+    //   setError('Password must be at least 7 characters!');
+    //   setIsValid(false);
+    // } 
+    else {
       try {
         // Sending data to backend for registration
-        const response = await axios.post('http://localhost:5000/users/register', {
+        const response = await axios.post('http://localhost:5000/auth/register', {
           username: formState.username,
           email: formState.email,
           password: formState.password,
@@ -48,7 +50,7 @@ const SignUpForm = () => {
           setError('Account created successfully!');
           setIsValid(true);
 
-          navigate('/login');  
+          navigate('/signin');  
         }
       } catch (error) {
         setError('Something went wrong. Please try again.');

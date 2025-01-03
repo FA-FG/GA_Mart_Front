@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
-const ProductDetails = ({ products, addToCart, user }) => {
+const ProductDetails = ({ user }) => {
   const { productId } = useParams();
   const product = products.find((p) => p.id === parseInt(productId));
 

@@ -14,6 +14,7 @@ import React from 'react'
 import Leed from './pages/Leed'
 import SignIn from './pages/SignIn'
 import AddProductForm from './components/AddProductForm'
+import Profile from './pages/Profile'
 
 import { CheckSession } from './services/Auth'
 
@@ -108,6 +109,7 @@ const App = () => {
           <Route path="/product/:productId" element={<ProductDetails user={user} />}/>
           <Route path="/add-product" element={<AddProductForm />}/>
           <Route path="/orders" element={<OrderDetails user={user} />} />
+          <Route path="/profile" element={<Profile user={user} />} />
         </Routes>
       </main>
     </div>

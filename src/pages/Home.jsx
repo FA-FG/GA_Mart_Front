@@ -1,21 +1,21 @@
-// Home.js
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios'; // Make sure to import axios
-import ProductCard from '../components/ProductCard';
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import axios from 'axios'
+import ProductCard from '../components/ProductCard'
 import { useNavigate } from 'react-router-dom'
 
-const Home = ({ addToCart,user }) => {
-  const [products, setProducts] = useState([]); // Ensure initial state is an empty array
-  const [searchQuery, setSearchQuery] = useState('');
-  const [quantities, setQuantities] = useState({});
+const Home = ({ user }) => {
+  const [products, setProducts] = useState([]) // Ensure initial state is an empty array
+  const [searchQuery, setSearchQuery] = useState('')
+  const [quantities, setQuantities] = useState({})
+  const [cart, setCart] = useState([])
 
   // Fetch products from the API
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get('http://localhost:5000/products');
-        console.log('API Response:', response.data); // Log the response data
+        console.log('API Response products:', response.data); // Log the response data
         if (Array.isArray(response.data)) {
           setProducts(response.data); // Set the products in state if it's an array
         } else {
@@ -29,9 +29,7 @@ const Home = ({ addToCart,user }) => {
     fetchProducts(); // Call the function to fetch products
   }, []); // Empty dependency array means this runs once when the component mounts
 
-  const filteredProducts = products.filter((product) =>
-    product.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+
 
   const updateQuantity = (productName, quantity) => {
     setQuantities((prevQuantities) => ({
@@ -39,6 +37,38 @@ const Home = ({ addToCart,user }) => {
       [productName]: quantity,
     }));
   };
+
+  const addToCart = async (productId) => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        console.error('User is not authenticated');
+        return;
+      }
+
+      const response = await axios.post(
+        'http://localhost:5000/cart/add',
+        { productId },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log('Added to Cart:', response.data);
+      // Update the cart state with the new cart data
+      setCart(response.data.productIds);
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+    }
+  };
+
+  const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  
 
   return user ? (
     <div className="home-container">

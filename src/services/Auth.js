@@ -20,6 +20,16 @@ export const RegisterUser = async (data) => {
   }
 }
 
+export const GetUserInfo = async (data) => {
+
+  try {
+    const res = await Client.get('auth/profile', data)
+    return res.data
+  } catch (error) {
+    throw error
+}
+}
+
 export const CheckSession = async () => {
   try {
     // Checks if the current token if it exists is valid
