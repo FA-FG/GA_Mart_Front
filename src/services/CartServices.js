@@ -11,10 +11,10 @@ const createCart = async (cartData) => {
   }
 }
 
-// Get cart by ID
-const getCart = async (id) => {
+
+const getCart = async () => {
   try {
-    const response = await Client.get(`/cart/${id}`)
+    const response = await Client.get(`/get`)
     return response.data
   } catch (error) {
     console.error('Error getting cart:', error)
@@ -22,10 +22,12 @@ const getCart = async (id) => {
   }
 }
 
+
+
 // Add product to cart by ID
 const addProductToCart = async (cartId, productId) => {
   try {
-    const response = await Client.put(`/cart/addProduct/${cartId}`, {
+    const response = await Client.post(`/add`, {
       productId
     })
     return response.data
@@ -38,7 +40,7 @@ const addProductToCart = async (cartId, productId) => {
 // Remove product from cart by ID
 const removeProductFromCart = async (cartId, productId) => {
   try {
-    const response = await Client.put(`/cart/removeProduct/${cartId}`, {
+    const response = await Client.put(`/remove`, {
       productId
     })
     return response.data

@@ -31,24 +31,26 @@ const Home = ({ user }) => {
 
 
 
-  const updateQuantity = (productName, quantity) => {
+  const updateQuantity = (productName, value) => {
     setQuantities((prevQuantities) => ({
       ...prevQuantities,
-      [productName]: quantity,
+      [productName]: value,
     }));
   };
 
-  const addToCart = async (productId) => {
+  const addToCart = async (product) => {
     try {
       const token = localStorage.getItem('token');
       if (!token) {
         console.error('User is not authenticated');
         return;
       }
+      const quantity = quantities[product.name] || 1
 
+      console.log('Adding to cart:', { productId: product._id, quantity });
       const response = await axios.post(
         'http://localhost:5000/cart/add',
-        { productId },
+        { productId: product._id, quantity },
         {
           headers: {
             Authorization: `Bearer ${token}`,
