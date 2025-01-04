@@ -3,14 +3,22 @@ import Client from './api' // Adjust the path based on your file structure
 // Create a new product
 const createProduct = async (productData) => {
   try {
-    const response = await Client.post('/products/create', productData) // Updated path
+    const response = await Client.post('/create', productData) // Updated path
     return response.data
   } catch (error) {
     console.error('Error creating product:', error)
     throw error
   }
 }
-
+const getProducts = async () => {
+  try {
+    const response = await Client.get(`/products`) // Updated path
+    return response.data
+  } catch (error) {
+    console.error('Error getting product:', error)
+    throw error
+  }
+}
 // Get product by ID
 const getProduct = async (id) => {
   try {
@@ -48,5 +56,6 @@ export default {
   createProduct,
   getProduct,
   updateProduct,
-  deleteProduct
+  deleteProduct,
+  getProducts
 }

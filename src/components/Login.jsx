@@ -1,87 +1,71 @@
-import { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';  
+// import { useState } from 'react';
+// import { useNavigate } from 'react-router-dom';  
+// import { loginUser } from '../services/Auth'
 
-const LoginForm = () => {
-  const initialState = {
-    email: '',
-    password: ''
-  };
+// const LoginForm = ({setUser}) => {
+//   let navigate = useNavigate()
+//   let initialState = { email: '', password: '' } 
+//   const [formValues, setFormValues] = useState(initialState)
 
-  const [formState, setFormState] = useState(initialState);
-  const [error, setError] = useState('');
-  const [isValid, setIsValid] = useState(false);
+//   const handleChange = (e) => {
+//     setFormValues({ ...formValues, [e.target.name]: e.target.value })
+//   }
 
-  const navigate = useNavigate();
-
-  // Handle input change
-  const handleChange = (event) => {
-    setFormState({ ...formState, [event.target.id]: event.target.value });
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    if (!formState.email || !formState.password) {
-      setError('Email and password are required!');
-      setIsValid(false);
-    } else {
-      try {
-        const response = await axios.post('http://localhost:5000/users/login', {
-          email: formState.email,
-          password: formState.password
-        });
-
-        if (response.status === 200) {
-          setError('');
-          setIsValid(true);
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     try {
+//       const payload = await loginUser(formValues);
+//       setFormValues(initialState); 
+//       setUser(payload);  // Assuming payload contains user data, not just the token
+//       navigate('/main');
+//     } catch (error) {
+//       // Handle error (e.g., show an error message to the user)
+//       console.error(error);
+//       alert("Login failed. Please check your credentials.");
+//     }
+//   };
+  
 
 
-          navigate('/');
-        }
-      } catch (error) {
-        setError('Invalid credentials. Please try again.');
-        setIsValid(false);
-      }
-    }
-  };
 
-  const handleCancel = () => {
-    setFormState(initialState);
-    setError('');
-    setIsValid(true);
-  };
 
-  return (
-    <div className="form">
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="Email"
-          id="email"
-          value={formState.email}
-          onChange={handleChange}
-        />
-        <label htmlFor="email">Email</label>
+//   return (
+//     <div className="form">
+//       <h1>Login</h1>
+//       <form onSubmit={handleSubmit}>
+//         <input
+//         onChange={handleChange}
+//           placeholder="Email"
+//           id="email"
+//           value={formValues.email}
+//           name="email"
+//           type="email"
+//         />
+//         <label htmlFor="email">Email</label>
 
-        <input
-          type="password"
-          placeholder="Password"
-          id="password"
-          value={formState.password}
-          onChange={handleChange}
-        />
-        <label htmlFor="password">Password</label>
+//         <input
+//         onChange={handleChange}
+//           type="password"
+//           name="password"
+//           placeholder="Password"
+//           id="password"
+//           value={formValues.password}
+          
+//         />
+//         <label htmlFor="password">Password</label>
 
-        <button type="submit">Log In</button>
+//         <button type="submit">Log In</button>
+//         {/* <button disabled={!formValues.email || !formValues.password}>Sign In</button> */}
 
-        <button type="button" className="cancel" onClick={handleCancel}>Cancel</button>
 
-        {error && <p className={isValid ? 'valid' : 'invalid'}>{error}</p>}
-      </form>
-    </div>
-  );
-};
+//       </form>
+//     </div>
+//   );
+// };
 
-export default LoginForm;
+// export default LoginForm;
+
+
+
+
+

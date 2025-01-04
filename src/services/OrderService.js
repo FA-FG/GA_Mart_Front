@@ -1,15 +1,31 @@
 import Client from './api' // Adjust the path based on your file structure
 
+
 // Create a new order
-const createOrder = async (orderData) => {
+const createOrder = async (userId, cartId, cartItems) => {
   try {
-    const response = await Client.post('/order/create', orderData)
-    return response.data
+    // Prepare order data (items should include productId, name, price, quantity)
+    const orderData = {
+      userId,
+      cartId,
+      totalPrice: cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0), // Calculate total price
+      items: cartItems.map(item => ({
+        productId: item.productId,
+        name: item.name,
+        price: item.price,
+        quantity: item.quantity
+      }))
+    };
+
+    const response = await Client.post('/order/create', orderData);
+    return response.data;
   } catch (error) {
-    console.error('Error creating order:', error)
-    throw error
+    console.error('Error creating order:', error);
+    throw error;
   }
-}
+};
+
+
 
 // Get order by ID
 const getOrder = async (id) => {

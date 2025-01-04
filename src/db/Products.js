@@ -1,6 +1,6 @@
 const fakeDatabase = [
   {
-    id: 1,
+    id: "67763ea3886b403181b32d5c",
     name: 'Apple',
     quantity: 10,
     unit: 'kg',
@@ -10,7 +10,7 @@ const fakeDatabase = [
     description: 'Fresh, crispy apples, perfect for snacking or baking.'
   },
   {
-    id: 2,
+    id: "67763ea3886b403181b32d5d",
     name: 'Banana',
     quantity: 20,
     unit: 'kg',
@@ -20,7 +20,7 @@ const fakeDatabase = [
     description: 'Sweet and nutritious bananas for a healthy snack.'
   },
   {
-    id: 3,
+    id: "67763ea3886b403181b32d5e",
     name: 'Carrot',
     quantity: 15,
     unit: 'kg',
@@ -30,7 +30,7 @@ const fakeDatabase = [
     description: 'Organic carrots full of vitamins and flavor.'
   },
   {
-    id: 4,
+    id: "67763ea3886b403181b32d5f",
     name: 'Tomato',
     quantity: 25,
     unit: 'kg',
@@ -40,7 +40,7 @@ const fakeDatabase = [
     description: 'Juicy tomatoes, ideal for cooking and salads.'
   },
   {
-    id: 5,
+    id: "67763ea3886b403181b32d60",
     name: 'Potato',
     quantity: 30,
     unit: 'kg',
@@ -50,7 +50,7 @@ const fakeDatabase = [
     description: 'Delicious and versatile potatoes for any meal.'
   },
   {
-    id: 6,
+    id: "67763ea3886b403181b32d61",
     name: 'Onion',
     quantity: 40,
     unit: 'kg',
@@ -60,7 +60,7 @@ const fakeDatabase = [
     description: 'Fresh onions to enhance the flavor of your dishes.'
   },
   {
-    id: 7,
+    id: "67763ea3886b403181b32d62",
     name: 'Lemon',
     quantity: 50,
     unit: 'kg',
@@ -70,7 +70,7 @@ const fakeDatabase = [
     description: 'Tart and juicy lemons, perfect for drinks and desserts.'
   },
   {
-    id: 8,
+    id: "67763ea3886b403181b32d63",
     name: 'Grapes',
     quantity: 12,
     unit: 'kg',
@@ -80,7 +80,7 @@ const fakeDatabase = [
     description: 'Sweet grapes for a refreshing snack or juice.'
   },
   {
-    id: 9,
+    id: "67763ea3886b403181b32d64",
     name: 'Strawberry',
     quantity: 18,
     unit: 'kg',
@@ -90,7 +90,7 @@ const fakeDatabase = [
     description: 'Juicy, ripe strawberries perfect for smoothies and desserts.'
   },
   {
-    id: 10,
+    id: "67763ea3886b403181b32d65",
     name: 'Watermelon',
     quantity: 22,
     unit: 'kg',
@@ -100,7 +100,7 @@ const fakeDatabase = [
     description: 'Refreshing watermelon for hot summer days.'
   },
   {
-    id: 11,
+    id: "67763ea3886b403181b32d66",
     name: 'Spinach',
     quantity: 30,
     unit: 'kg',
@@ -110,7 +110,7 @@ const fakeDatabase = [
     description: 'Fresh spinach, rich in vitamins and minerals.'
   },
   {
-    id: 12,
+    id: "67763ea3886b403181b32d67",
     name: 'Peach',
     quantity: 12,
     unit: 'kg',
@@ -120,7 +120,7 @@ const fakeDatabase = [
     description: 'Sweet and juicy peaches, perfect for desserts.'
   },
   {
-    id: 13,
+    id: "67763ea3886b403181b32d68",
     name: 'Cucumber',
     quantity: 18,
     unit: 'kg',
@@ -130,7 +130,7 @@ const fakeDatabase = [
     description: 'Crisp cucumbers for refreshing salads and snacks.'
   },
   {
-    id: 14,
+    id: "67763ea3886b403181b32d69",
     name: 'Avocado',
     quantity: 8,
     unit: 'kg',
@@ -140,7 +140,7 @@ const fakeDatabase = [
     description: 'Creamy avocados perfect for toast, guacamole, or salads.'
   },
   {
-    id: 15,
+    id: "67763ea3886b403181b32d6a",
     name: 'Pineapple',
     quantity: 15,
     unit: 'kg',
@@ -150,7 +150,7 @@ const fakeDatabase = [
     description: 'Sweet and tangy pineapples for a tropical treat.'
   },
   {
-    id: 16,
+    id: "67763ea3886b403181b32d6b",
     name: 'Mango',
     quantity: 12,
     unit: 'kg',
@@ -170,7 +170,7 @@ const fakeDatabase = [
     description: 'Fresh blueberries, rich in antioxidants and flavor.'
   },
   {
-    id: 18,
+    id: "67763ea3886b403181b32d6c",
     name: 'Chili Pepper',
     quantity: 30,
     unit: 'kg',
@@ -180,7 +180,7 @@ const fakeDatabase = [
     description: 'Spicy chili peppers to add heat to your meals.'
   },
   {
-    id: 19,
+    id: "67763ea3886b403181b32d6d",
     name: 'Cabbage',
     quantity: 18,
     unit: 'kg',
@@ -190,7 +190,7 @@ const fakeDatabase = [
     description: 'Fresh cabbage for salads and stir-fries.'
   },
   {
-    id: 20,
+    id: "67763ea3886b403181b32d6e",
     name: 'Garlic',
     quantity: 22,
     unit: 'kg',
@@ -200,7 +200,7 @@ const fakeDatabase = [
     description: 'Flavorful garlic to add zest to any dish.'
   },
   {
-    id: 21,
+    id: "67763ea3886b403181b32d6f",
     name: 'Zucchini',
     quantity: 20,
     unit: 'kg',
@@ -210,7 +210,7 @@ const fakeDatabase = [
     description: 'Tender zucchinis perfect for grilling or stir-frying.'
   },
   {
-    id: 22,
+    id: "67763ea3886b403181b32d70",
     name: 'Bell Pepper',
     quantity: 10,
     unit: 'kg',
@@ -221,7 +221,7 @@ const fakeDatabase = [
       'Vibrant bell peppers for adding color and taste to your meals.'
   },
   {
-    id: 23,
+    id: "67763ea3886b403181b32d71",
     name: 'Pumpkin',
     quantity: 12,
     unit: 'kg',
@@ -231,7 +231,7 @@ const fakeDatabase = [
     description: 'Sweet pumpkins for pies, soups, and roasts.'
   },
   {
-    id: 24,
+    id: "67763ea3886b403181b32d72",
     name: 'Lettuce',
     quantity: 25,
     unit: 'kg',
@@ -241,7 +241,7 @@ const fakeDatabase = [
     description: 'Fresh lettuce, ideal for salads and sandwiches.'
   },
   {
-    id: 25,
+    id: "67763ea3886b403181b32d73",
     name: 'Kale',
     quantity: 14,
     unit: 'kg',
@@ -251,7 +251,7 @@ const fakeDatabase = [
     description: 'Nutrient-rich kale for salads or sautéing.'
   },
   {
-    id: 26,
+    id: "67763ea3886b403181b32d74",
     name: 'Chard',
     quantity: 17,
     unit: 'kg',
