@@ -1,4 +1,5 @@
 
+
 import { useNavigate } from 'react-router-dom'
 
 const About = ({user}) => {
@@ -49,3 +50,4 @@ const About = ({user}) => {
 }
 
 export default About;
+
