@@ -1,56 +1,20 @@
-import Client from './api' // Adjust the path based on your file structure
+import Client from './api'
 
-// Create a new cart
-const createCart = async (cartData) => {
-  try {
-    const response = await Client.post('/cart/create', cartData)
-    return response.data
-  } catch (error) {
-    console.error('Error creating cart:', error)
-    throw error
-  }
+//Get or create a cart
+export const getCart = async () => {
+  const response = await Client.get('/cart')
+  console.log('Fetched Cart:', response.data)
+  return response.data
 }
 
-// Get cart by ID
-const getCart = async (id) => {
-  try {
-    const response = await Client.get(`/cart/${id}`)
-    return response.data
-  } catch (error) {
-    console.error('Error getting cart:', error)
-    throw error
-  }
+//Add an item to the cart
+export const addItemToCart = async (productId, quantity) => {
+  const response = await Client.post('/cart/add', { productId, quantity })
+  return response.data
 }
 
-// Add product to cart by ID
-const addProductToCart = async (cartId, productId) => {
-  try {
-    const response = await Client.put(`/cart/addProduct/${cartId}`, {
-      productId
-    })
-    return response.data
-  } catch (error) {
-    console.error('Error adding product to cart:', error)
-    throw error
-  }
-}
-
-// Remove product from cart by ID
-const removeProductFromCart = async (cartId, productId) => {
-  try {
-    const response = await Client.put(`/cart/removeProduct/${cartId}`, {
-      productId
-    })
-    return response.data
-  } catch (error) {
-    console.error('Error removing product from cart:', error)
-    throw error
-  }
-}
-
-export default {
-  createCart,
-  getCart,
-  addProductToCart,
-  removeProductFromCart
+//Remove an item from the cart
+export const removeItemFromCart = async (productId) => {
+  const response = await Client.post('/cart/remove', { productId })
+  return response.data
 }

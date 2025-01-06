@@ -1,106 +1,105 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
+import {
+  getCart,
+  addItemToCart,
+  removeItemFromCart
+} from '../services/cartServices'
+import { getProducts } from '../services/productServices'
+import { useNavigate } from 'react-router-dom'
 
+const Cart = () => {
+  const [cart, setCart] = useState(null)
+  const [products, setProducts] = useState([])
+  const [error, setError] = useState('')
+  const navigate = useNavigate()
 
-const Cart = ({ user,cart = [], setCart, orders, setOrders }) => {
-  const [loading, setLoading] = useState(false); // Add loading state for checkout
-  const navigate = useNavigate();
+  useEffect(() => {
+    const fetchCart = async () => {
+      try {
+        const cartData = await getCart()
+        setCart(cartData)
+      } catch (error) {
+        setError('Failed to fetch cart.')
+      }
+    }
 
-  // Function to remove an item from the cart
-  const removeFromCart = (productId) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
+    const fetchProducts = async () => {
+      try {
+        const productsData = await getProducts()
+        setProducts(productsData)
+      } catch (error) {
+        setError('Failed to fetch products.')
+      }
+    }
+
+    fetchCart()
+    fetchProducts()
+  }, [])
+
+  const handleAddItem = async (productId, quantity) => {
+    try {
+      const updatedCart = await addItemToCart(productId, quantity)
+      setCart(updatedCart)
+    } catch (error) {
+      setError('Failed to add item to cart.')
+    }
+  }
+
+  const handleRemoveItem = async (productId) => {
+    try {
+      const updatedCart = await removeItemFromCart(productId)
+      setCart(updatedCart)
+    } catch (error) {
+      setError('Failed to remove item from cart.')
+    }
+  }
+
+  //   const handleQuantityChange = async (productId, quantity) => {
+  //     if (quantity <= 0) return;
+  //     try {
+  //       const updatedCart = await addItemToCart(productId, quantity);
+  //       setCart(updatedCart);
+  //     } catch (error) {
+  //       setError('Failed to update quantity.');
+  //     }
+  //   };
+
+  const handlePlaceOrder = () => {
+    if (cart && cart.items.length > 0) {
+      navigate('/orders/place');
+    } else {
+      setError('Your cart is empty. Please add items to your cart before placing an order.');
+    }
   };
 
-  // Function to update the quantity of an item in the cart
-  const updateQuantity = (productId, quantity) => {
-    if (isNaN(quantity) || quantity <= 0) return; // Prevent invalid values
-    setCart((prevCart) =>
-      prevCart.map((item) =>
-        item.id === productId
-          ? { ...item, quantity: Math.max(1, parseInt(quantity, 10)) }
-          : item
-      )
-    );
-  };
+  if (!cart) return <p>Loading...</p>
 
-  // Calculate total price of all items in the cart
-  const calculateTotal = () => {
-    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
-  };
-
-  // Handle checkout
-  const handleCheckout = () => {
-    setLoading(true); // Start loading state
-    const newOrder = {
-      id: Date.now(), // Generate a unique order ID
-      date: new Date(),
-      items: cart,
-      total: calculateTotal(),
-    };
-    setOrders((prevOrders) => [...prevOrders, newOrder]); // Add the new order
-    setCart([]); // Clear the cart
-    setTimeout(() => {
-      setLoading(false); // End loading state
-      navigate('/orders'); // Navigate to the Orders page
-    }, 1000); // Simulate a delay for a smooth checkout experience
-  };
-
-  return user ? (
-    <div className="cart-container">
-      <h2>Your Cart</h2>
-      {cart.length > 0 ? (
-        <div className="cart-items">
-          {cart.map((item) => (
-            <div key={item.id} className="cart-item">
-              <div className="cart-item-info">
-                <img
-                  src={item.image} // Assuming each item has an image property
-                  alt={item.name}
-                  className="cart-item-image"
-                />
-                <div>
-                  <p>{item.name}</p>
-                  <p>Price: ${item.price}</p>
-                  <label htmlFor={`quantity-${item.id}`}>Quantity:</label>
-                  <input
-                    id={`quantity-${item.id}`}
-                    type="number"
-                    min="1"
-                    value={item.quantity}
-                    onChange={(e) => updateQuantity(item.id, e.target.value)}
-                    aria-label="Quantity input"
-                    className="quantity-input"
-                  />
-                </div>
-              </div>
-              <button
-                className="remove-button"
-                onClick={() => removeFromCart(item.id)}
-                aria-label="Remove item from cart"
-              >
-                Remove
-              </button>
-            </div>
-          ))}
-          <div className="cart-total">
-            <p>Total: ${calculateTotal().toFixed(2)}</p>
-          </div>
-          <button
-            className="checkout-button"
-            onClick={handleCheckout}
-            disabled={loading}
-          >
-            {loading ? 'Processing...' : 'Checkout'}
-          </button>
-        </div>
-      ) : (
-        <p>Your cart is empty.</p>
-      )}
+  return (
+    <div className='cart'>
+      <h2>Cart</h2>
+      {error && <p>{error}</p>}
+      <ul>
+        {cart.items.map((item) => (
+          <li key={item.productId._id}>
+            <img src={item.productId.image} alt={item.productId.name} />
+            <p>Product: {item.productId.name}</p>
+            <p>Quantity: {item.quantity}</p>
+            <p>Total Price: ${item.quantity * item.productId.price}</p>
+            <button onClick={() => handleRemoveItem(item.productId._id)}>
+              Remove
+            </button>
+            {/* <input
+              type="number"
+              min="1"
+              value={item.quantity}
+              onChange={(e) => handleQuantityChange(item.productId._id, parseInt(e.target.value))}
+            /> */}
+          </li>
+        ))}
+      </ul>
+      <button onClick={handlePlaceOrder}>Place Order</button>
     </div>
-  ):<div className="protected">
-  <h3>Oops! You must be signed in to do that!</h3>
-  <button onClick={() => navigate('/signin')}>Sign In</button>
-</div>
+  )
 }
 
-export default Cart;
+export default Cart
