@@ -1,11 +1,10 @@
 
-
 import { useNavigate } from 'react-router-dom'
 
 const About = ({user}) => {
   let navigate = useNavigate()
 
-  return user ? (
+  return  (
     <div className="about-container">
       <h2>Welcome to GA Mart</h2> 
       <p>
@@ -43,11 +42,7 @@ const About = ({user}) => {
         local economies thrive and communities flourish.
       </p>
     </div>
-  ):<div className="protected">
-  <h3>Oops! You must be signed in to do that!</h3>
-  <button onClick={() => navigate('/signin')}>Sign In</button>
-</div>
+  )
 }
 
 export default About;
-
